@@ -29,5 +29,27 @@
     in
     {
       packages = { inherit (pkgs) fetchMacOS; };
+
+      devShell = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          qemu-utils
+          dmg2img
+          fetchMacOS
+        ];
+
+        shellHook =
+          let
+            scriptFor = version: ''
+              fetchMacOS -v ${version} && dmg2img ./BaseSystem/BaseSystem.dmg ./BaseSystem.img
+            '';
+          in
+          ''
+            alias jumpstartHighSierra="${scriptFor "10.13"}"
+            alias jumpstartMojave="${scriptFor "10.14"}"
+            alias jumpstartCatalina="${scriptFor "10.15"}"
+
+            alias defaultDisk="qemu-img create -f qcow2 disk0.qcow2 64G"
+          '';
+      };
     });
 }
