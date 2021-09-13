@@ -1,3 +1,5 @@
 BaseSystem/**
 disk0.qcow2
 BaseSystem.img
+ESP.qcow2
+OVMF_VARS.fd
