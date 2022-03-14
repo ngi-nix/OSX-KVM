@@ -4,31 +4,15 @@ A simple `flake.nix` to setup a macOS virtual machine based on https://github.co
 
 ## Usage
 
-If you want to go with the defaults, you don't need to clone this repo. But
-it's generally recommended to, as you'll be running commands from here each
-time you want to start the VM.
-
-First, enter a devShell
-```
-nix develop
+```shell
+mkdir macos
+cd macos
+nix run github:ngi-nix/OSX-KVM
 ```
 
-Then download one of the available macOS versions: High Sierra, Mojave or
-Catalina
-```
-jumpstartCatalina
-```
+## Headless mode
 
-After downloading, set up the virtual disk. By default it's 64GB, but you can
-edit the value in the flake
-```
-defaultDisk
-```
-
-Finally, start the VM
-```
-runMacOS
-```
+After the machine is set up, edit `./settings.json` and set `headless` to `true`.
 
 ## Installing macOS
 
@@ -41,4 +25,4 @@ should be straightforward: click continue and agree, then select your disk.
 
 ## Additional options
 
-You can change the amount of CPU cores or RAM the machine uses inside the flake.
+You can change the amount of CPU cores or RAM the machine uses by editing the `settings.json` generated after first launch.
