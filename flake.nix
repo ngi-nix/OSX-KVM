@@ -12,18 +12,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        fetchMacOS = pkgs.stdenv.mkDerivation {
-          name = "fetchMacOS";
-          buildInputs = [
-            (pkgs.python38.withPackages (pyPkgs: with pyPkgs; [ requests click ]))
-          ];
-          unpackPhase = "true";
-          installPhase = ''
-            mkdir -p $out/bin
-            cp ${osx-kvm}/tools/FetchMacOS/fetch-macos.py $out/bin/fetchMacOS
-            chmod +x $out/bin/fetchMacOS
-          '';
-        };
+        fetchMacOS = pkgs.callPackage ./packages/fetchMacOS.nix { inherit osx-kvm; };
 
         start =
           pkgs.writeShellScriptBin "start" ''
