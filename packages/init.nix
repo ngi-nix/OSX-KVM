@@ -1,4 +1,4 @@
-{ stdenv
+{ stdenvNoCC
 , dmg2img
 , fetchMacOS
 , jq
@@ -8,7 +8,7 @@
 , qemu
 }:
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   name = "init";
   src = ./init.sh;
 

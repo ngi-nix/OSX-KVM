@@ -1,4 +1,4 @@
-{ stdenv
+{ stdenvNoCC
 , init
 , jq
 , lib
@@ -7,7 +7,7 @@
 , qemu
 }:
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   name = "start";
   src = ./start.sh;
 

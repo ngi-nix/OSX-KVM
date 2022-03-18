@@ -1,6 +1,6 @@
-{ stdenv, python38, osx-kvm }:
+{ stdenvNoCC, python38, osx-kvm }:
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   name = "fetchMacOS";
 
   buildInputs = [
